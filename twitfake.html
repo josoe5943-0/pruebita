@@ -1,0 +1,37 @@
+# crea demo_local_snapshot.html en tu carpeta actual
+TODAY_UTC=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+cat > demo_local_snapshot.html <<'HTML'
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:site_name" content="demo.local"/>
+  <!-- Simulamos la fecha de "archivado" hoy -->
+  <meta property="article:published_time" content="__PUBLISHED_TIME__" />
+  <meta property="article:modified_time" content="__PUBLISHED_TIME__" />
+  <link rel="canonical" href="https://x.com/Jpvel/status/982371956428800"/>
+  <title>Demo snapshot local</title>
+  <style>
+    body { font-family: sans-serif; background:#f1f1f1; padding:2rem; }
+    .card { background:white; padding:1rem; border-radius:8px; max-width:900px; box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+    .water { color:rgba(255,0,0,0.9); font-weight:bold; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="water">DEMO — NO REAL — LABORATORIO</div>
+    <h2>Juan Velasco <small>@Jpvel</small></h2>
+    <p><em>Mostrando fecha en el contenido: 6 Nov 2010</em></p>
+    <blockquote>"ODIOOOOO EL COLEGIO Y ALOS LARIS"</blockquote>
+    <p>URL (en la página): <a href="https://x.com/Jpvel/status/982371956428800">https://x.com/Jpvel/status/982371956428800</a></p>
+    <p style="color:#666;font-size:0.9rem;margin-top:1rem">Nota: esto es una demo local para el laboratorio. No es real.</p>
+  </div>
+</body>
+</html>
+HTML
+
+# Inserta la fecha de "archivado" actual (UTC)
+sed -i "s|__PUBLISHED_TIME__|$TODAY_UTC|g" demo_local_snapshot.html
+
+echo "Archivo demo_local_snapshot.html creado. Fecha de 'archivado' puesta a: $TODAY_UTC"
